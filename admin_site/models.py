@@ -24,4 +24,4 @@ class fourthyear(models.Model):
 
 class count_info(models.Model):
 	total_reports=models.IntegerField()
-	daily_reports=models.IntegerField()
+	id_number=models.IntegerField()

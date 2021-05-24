@@ -20,8 +20,8 @@ year_id={'I':firstyear,'II':secondyear,'III':thirdyear,'IV':fourthyear}
 
 def home(request):
 	if count_info.objects.all().count()<=0:
-		count_info(total_reports=0,daily_reports=0).save()
-	t=count_info.objects.get(pk=2)
+		count_info(total_reports=0,id_number=1).save()
+	t=count_info.objects.get(id_number=1)
 	total=t.total_reports
 	students_count=firstyear.objects.all().count()+secondyear.objects.all().count()+thirdyear.objects.all().count()+fourthyear.objects.all().count()
 
@@ -74,7 +74,7 @@ def df_by_year(year):
 
 def import_by_file(stu_file,year):
 	table=year_id[year]
-	stu_df=pd.read_excel(stu_file,sheet_name=1,engine='openpyxl')
+	stu_df=pd.read_excel(stu_file,sheet_name=0,engine='openpyxl')
 	for i in range(stu_df.shape[0]):
 		table(regd_number=stu_df['REGD NO'][i],full_name=stu_df['FullName'][i],branch=stu_df['Branch'][i]).save()
 	return
@@ -156,8 +156,6 @@ def report(request):
 			stdf=pd.read_excel(stfile,sheet_name=1,engine='openpyxl')
 			result_df,date=backend.get_result_by_stu(stdf,msdf,filter)
 		else:
-			print('no'*10)
-
 			result_df,date=backend.get_result_by_db(msdf,year,branch,filter)
 			
  
@@ -170,7 +168,7 @@ def report(request):
 
 		content['zipped']=zip([i for i in range(1,len(content['redgs'])+1)],content['redgs'],content['names'],content['attend'])
 		# content['unknown_zip']=zip( [i for i in range(len(content['redgs'])+1,len(content['unknown'])+1)], content['unknown'])
-		t=count_info.objects.get(id=2)
+		t=count_info.objects.get(id_number=1)
 		t.total_reports +=1
 		t.save()
 		return render(request,'report.html',content)

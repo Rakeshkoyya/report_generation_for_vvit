@@ -31,7 +31,7 @@ def get_result(regdno_list,fname_list,msdf,filter):
 	duration_list=[0 for _ in range(len(regdno_list))]
 	attend_list=[0 for _ in range(len(regdno_list))]
 
-	visited_index=[]
+	visited_nameformfile=[]
 	unknown_name_list=[]
 	unknown_duration_list=[]
 	unknown_attend_list=[]
@@ -79,7 +79,7 @@ def get_result(regdno_list,fname_list,msdf,filter):
 			
 			if t_name.lower() in nameformfile.lower() or t_regd.lower() in nameformfile.lower():
 				attend_list[i]='P'
-				visited_index.append(index)
+				visited_nameformfile.append(nameformfile)
 
 				t_time=cal_duration(attendees_dict[nameformfile])
 				duration_list[i]=str(t_time.seconds//60)+'mins'
@@ -91,14 +91,15 @@ def get_result(regdno_list,fname_list,msdf,filter):
 			attend_list[i]='A'
 			duration_list[i]='0 mins'
 			absent_count+=1
-	
+
 	for index in msdf.index:
-		if index not in visited_index and msdf.loc[index,'Full Name'] not in unknown_name_list:
+		if msdf.loc[index,'Full Name'] not in visited_nameformfile:
 			nameformfile=msdf.loc[index,'Full Name']
 			unknown_name_list.append(nameformfile)
 			t_time=cal_duration(attendees_dict[nameformfile])
 			unknown_duration_list.append(str(t_time.seconds//60)+'mins')
 			unknown_attend_list.append('*P')
+			visited_nameformfile.append(nameformfile)
 
 
 	resdf=pd.DataFrame({'REGD NO': regdno_list,'FullName':fname_list, date_head:attend_list, 

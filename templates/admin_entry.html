@@ -3,6 +3,19 @@
 <html lang="en">
 
 <head>
+
+
+	<script>
+
+		if (document.getElementById("first_file").value != "") {
+
+			document.getElementById("first_file_btn").classList.add("hide-this");
+
+			// you have a file
+		}
+
+	</script>
+
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -185,9 +198,9 @@
 							<h2 class="h3 font-weight-bold">no data</h2>
 							<div class="custom-separator my-4 mx-auto bg-primary"></div>
 
-							<span
+							<span id="first_file_btn"
 								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
-								Choose File <input type="file" name='first_file'>
+								Choose File <input id='first_file' type="file" name='first_file'>
 							</span>
 
 							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
