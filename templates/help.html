@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title>Inner Page - OnePage Bootstrap Template</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+
+	<!-- Favicons -->
+	<link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+	<link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+	<!-- formstyle -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+	<!-- =======================================================
+  * Template Name: OnePage - v4.2.0
+  * Template URL: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+
+</head>
+
+<body>
+
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top">
+		<div class="container d-flex align-items-center justify-content-between">
+
+			<h1 class="logo"><a href="/">AiNuggets</a></h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			<!-- <a href="index.html" class="logo"><img src="{% static 'assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+			<nav id="navbar" class="navbar">
+				<ul>
+					<li><a class="nav-link scrollto " href="/">Home</a></li>
+					<li><a class="nav-link scrollto active" href="help">Help</a></li>
+					<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+					{% if user.is_authenticated %}
+					<li><a class="nav-link scrollto" href="admin_entry">Admin panel</a></li>
+					<li><a class="nav-link scrollto" href="logout">Logout</a></li>
+					{% endif %}
+					<li><a class="getstarted scrollto" href="report">Get Report</a></li>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav><!-- .navbar -->
+
+		</div>
+	</header><!-- End Header -->
+
+
+	{% if user.is_authenticated %}
+
+	<section id="about-video" class="about-video">
+		<div class="container" data-aos="fade-up">
+
+			<div class="section-title">
+				<h2>how to import student file to database</h2>
+			</div>
+			<div class="col-lg-10 content head">
+				<h2>complete details on importing the students' data</h2>
+			</div>
+
+			<div class="row">
+
+				<div class="col-lg-6 pt-3 pt-lg-0 content " data-aos="fade-right" data-aos-delay="100">
+					<!-- <h3>Using student data from your file</h3> -->
+					<p>
+						You can import the student data from an excell file. The file should have the following
+						requirements.
+					</p>
+					<ul>
+						<li><i class="bx bx-check-double"></i> File format must be .xlsx</li>
+						<li><i class="bx bx-check-double"></i> File should contain a column named "REGD NO"</li>
+						<li><i class="bx bx-check-double"></i> File should contain a column named "FullName"</li>
+						<li><i class="bx bx-check-double"></i>File should contain a column named "Branch"</li>
+						<li><i class="bx bx-check-double"></i>Column headings must be exactly matched with above
+							details.</li>
+						<li><i class="bx bx-check-double"></i>Details must be in the first sheet (sheet1) of the file
+						</li>
+
+					</ul>
+					<p class="fst-italic">NOTE: makesure your file containd all the students of the particular year. You
+						can not edit the
+						data in database so if you want to edit just delete the data from database and upload the edited
+						file of
+						students data (.xlsx file).
+
+					</p>
+
+				</div>
+
+				<div class="col-lg-6 video-box align-self-baseline" data-aos="fade-left" data-aos-delay="100">
+					<img src="{% static 'assets/img/stu_admin.jpeg' %}" class="img-fluid" alt="">
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+
+
+	{% endif %}
+
+
+
+
+
+
+
+
+
+
+	<section id="about-video" class="about-video">
+		<div class="container" data-aos="fade-up">
+
+			<div class="section-title">
+				<h2>how this service works</h2>
+				<p>The Report is generated by comparing the Attendance list file form MS teams,<br>
+					This comparision can be done in two ways.<br>
+					1.comparing with student data from our database.<br>
+					2.comparing with student file given by you.
+				</p>
+			</div>
+
+			<div class="col-lg-10 content head">
+				<h2>1.comparing with student data from our database.</h2>
+			</div>
+
+			<div class="row">
+
+				<div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
+					<img src="{% static 'assets/img/ms_pic.jpeg' %}" class="img-fluid" alt="">
+				</div>
+
+				<div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
+					<h3>Using student data from database</h3>
+					<p>
+						Attendance list form MS team by default is a .csv and we expect to receive a .csv for this field
+						Sample Image of the Attendance list from MS teams is shown.
+					</p>
+					<ul>
+						<li><i class="bx bx-check-double"></i> File format must be .csv
+						</li>
+						<li><i class="bx bx-check-double"></i> File should contain a column named "Full Name"</li>
+						<li><i class="bx bx-check-double"></i> File should contain a column named "User Action"</li>
+						<li><i class="bx bx-check-double"></i>File should contain a column named "Timestamp"</li>
+						<li><i class="bx bx-check-double"></i>column headings must be exactly matched with above details
+						</li>
+					</ul>
+					<p class="fst-italic">To use this service fill all the details in "Generate Your Attendance Report"
+						form except the
+						optional one, The program will decide to compare your Attendance list with our database.
+					</p>
+					<p class="fst-italic">
+						NOTE: The default Attendance file downloaded from MS teams has all the above constraints. Do not
+						upload the file which is edited
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+
+
+
+
+	<section id="about-video" class="about-video">
+		<div class="container" data-aos="fade-up">
+			<div class="col-lg-10 content head">
+				<h2>2.comparing with your given students data.</h2>
+			</div>
+
+			<div class="row">
+
+				<div class="col-lg-6 pt-3 pt-lg-0 content " data-aos="fade-right" data-aos-delay="100">
+					<h3>Using student data from your file</h3>
+					<p>
+						we except an excell file (.xlsx) as your students data.
+						Sample Image of the student data is shown.
+						The excell file must be formatted in the following way.
+					</p>
+					<ul>
+						<li><i class="bx bx-check-double"></i> File format must be .xlsx</li>
+						<li><i class="bx bx-check-double"></i> File should contain a column named "REGD NO"</li>
+						<li><i class="bx bx-check-double"></i> File should contain a column named "FullName"</li>
+						<li><i class="bx bx-check-double"></i>File should contain a column named "Branch"</li>
+						<li><i class="bx bx-check-double"></i>Column headings must be exactly matched with above
+							details.</li>
+						<li><i class="bx bx-check-double"></i>Details must be in the first sheet (sheet1) of the file
+						</li>
+
+					</ul>
+					<p class="fst-italic">To use this service fill all the details in "Generate Your Attendance Report"
+						form including the
+						optional one, The program will decide to compare your Attendance list with your file of
+						students' data.
+					</p>
+
+				</div>
+
+				<div class="col-lg-6 video-box align-self-baseline" data-aos="fade-left" data-aos-delay="100">
+					<img src="{% static 'assets/img/student_pic.jpeg' %}" class="img-fluid" alt="">
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+
+
+	<section>
+
+	</section>
+
+
+
+
+
+
+	<!-- ======= Footer ======= -->
+	<footer id="footer">
+
+		<div class="container d-md-flex py-4">
+
+			<div class="me-md-auto text-center text-md-start">
+				<div class="copyright">
+					Developed by <strong><span>Rakesh koyya</span></strong> final year ECE.<br>
+					Under the guidance of <strong>M. Pardha Saradhi</strong>, M.Tech(Ph.D).
+				</div>
+				<div class="credits">
+					<!-- All the links in the footer should remain intact. -->
+					<!-- You can delete the links only if you purchased the pro version. -->
+					<!-- Licensing information: https://bootstrapmade.com/license/ -->
+					<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ -->
+					<a href="https://vvitguntur.com" target="_blank">Vasireddy Venkatadri Institute of
+						Technology</a><br>
+					<a href="mailto:rakeshkoyya2024@gmail.com">rakeshkoyya2024@gmail.com</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+
+	<div id="preloader"></div>
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+			class="bi bi-arrow-up-short"></i></a>
+
+	<!-- Vendor JS Files -->
+	<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+	<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+	<script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
+	<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+	<!-- Template Main JS File -->
+	<script src="{% static 'assets/js/main.js' %}"></script>
+
+
+</body>
+
+</html>

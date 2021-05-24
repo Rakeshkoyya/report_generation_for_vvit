@@ -1,0 +1,378 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title>Inner Page - OnePage Bootstrap Template</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+
+	<!-- Favicons -->
+	<link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+	<link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+	<!-- formstyle -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+	<!-- =======================================================
+  * Template Name: OnePage - v4.2.0
+  * Template URL: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+
+	<style>
+		.detform {
+			padding: 4rem;
+			padding-top: 10rem;
+		}
+
+		/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+		.rounded-lg {
+			border-radius: 1rem !important;
+		}
+
+		.text-small {
+			font-size: 0.9rem !important;
+		}
+
+		.custom-separator {
+			width: 5rem;
+			height: 6px;
+			border-radius: 1rem;
+		}
+
+		.text-uppercase {
+			letter-spacing: 0.2em;
+		}
+
+
+
+
+		.btn-file {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.btn-file input[type=file] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			min-width: 100%;
+			min-height: 100%;
+			font-size: 100px;
+			text-align: right;
+			filter: alpha(opacity=0);
+			opacity: 0;
+			outline: none;
+			background: white;
+			cursor: inherit;
+			display: block;
+		}
+
+
+		/*
+  *
+  * ==========================================
+  * FOR DEMO PURPOSES
+  * ==========================================
+  *
+  */
+
+		body {
+			background: #009ddb;
+			background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+			background: linear-gradient(to right, #0083B0, #00B4DB);
+			color: #514B64;
+			min-height: 100vh;
+		}
+	</style>
+
+
+</head>
+
+<body>
+
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top">
+		<div class="container d-flex align-items-center justify-content-between">
+
+			<h1 class="logo"><a href="/">AiNuggets</a></h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			<!-- <a href="index.html" class="logo"><img src="{% static 'assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+			<nav id="navbar" class="navbar">
+				<ul>
+					<li><a class="nav-link scrollto " href="/">Home</a></li>
+					<li><a class="nav-link scrollto" href="/help">Help</a></li>
+					<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+					<li><a class="nav-link scrollto active" href="admin_entry">Admin panel</a></li>
+					<li><a class="nav-link scrollto" href="logout">Logout</a></li>
+					<li><a class="getstarted scrollto" href="report">Get Report</a></li>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav><!-- .navbar -->
+
+		</div>
+	</header><!-- End Header -->
+
+	<section>
+		<div class="container py-5">
+
+			<!-- FOR DEMO PURPOSE -->
+			<header class="text-center mb-5 text-white">
+				<div class="row">
+					<div class="col-lg-7 mx-auto">
+						<h1>Student database </h1>
+						<p>you can manage the students data here.</p>
+					</div>
+				</div>
+			</header>
+			<!-- END -->
+
+
+
+			<div class="row text-center align-items-end">
+				<!-- Pricing Table-->
+				<div class="col-lg-3 mb-5 mb-lg-0">
+					<div class="bg-white p-5 rounded-lg shadow">
+
+						<form action="admin_entry" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							<h1 class="h6 text-uppercase font-weight-bold mb-4">I year</h1>
+							{% if firstyear > 0 %}
+							<h2 class="h3 font-weight-bold"> {{ firstyear }} students</h2>
+							<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="download1">Download excell</button>
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="delete1">Delete data</button>
+
+							{% else %}
+							<h2 class="h3 font-weight-bold">no data</h2>
+							<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+							<span
+								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
+								Choose File <input type="file" name='first_file'>
+							</span>
+
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="import1">Import data</button>
+
+
+							{% endif %}
+						</form>
+					</div>
+				</div>
+				<!-- END -->
+
+
+				<!-- Pricing Table-->
+				<div class="col-lg-3 mb-5 mb-lg-0">
+					<div class="bg-white p-5 rounded-lg shadow">
+						<form action="admin_entry" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							<h1 class="h6 text-uppercase font-weight-bold mb-4">II year</h1>
+							{% if secondyear > 0 %}
+							<h2 class="h3 font-weight-bold"> {{ secondyear }} students</h2>
+							<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="download2">Download excell</button>
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="delete2">Delete data</button>
+
+							{% else %}
+							<h2 class="h3 font-weight-bold">no data</h2>
+							<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+							<span
+								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
+								Choose File <input type="file" name='second_file'>
+							</span>
+
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="import2">Import data</button>
+
+
+							{% endif %}
+						</form>
+					</div>
+				</div>
+				<!-- END -->
+
+
+				<!-- Pricing Table-->
+				<div class="col-lg-3">
+					<div class="bg-white p-5 rounded-lg shadow">
+						<form action="admin_entry" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							<h1 class="h6 text-uppercase font-weight-bold mb-4">III year</h1>
+							{% if thirdyear > 0 %}
+							<h2 class="h3 font-weight-bold"> {{ thirdyear }} students</h2>
+							<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="download3">Download excell</button>
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="delete3">Delete data</button>
+
+							{% else %}
+							<h2 class="h3 font-weight-bold">no data</h2>
+							<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+							<span
+								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
+								Choose File <input type="file" name='third_file'>
+							</span>
+
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="import3">Import data</button>
+
+
+							{% endif %}
+						</form>
+					</div>
+				</div>
+				<!-- END -->
+
+
+				<!-- Pricing Table-->
+				<div class="col-lg-3">
+					<div class="bg-white p-5 rounded-lg shadow">
+						<form action="admin_entry" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							<h1 class="h6 text-uppercase font-weight-bold mb-4">IV year</h1>
+							{% if fourthyear > 0 %}
+							<h2 class="h3 font-weight-bold"> {{ fourthyear }} students</h2>
+							<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="download4">Download excell</button>
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="delete4">Delete data</button>
+
+							{% else %}
+							<h2 class="h3 font-weight-bold">no data</h2>
+							<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+							<span
+								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
+								Choose File <input type="file" name='fourth_file'>
+							</span>
+							<!-- <input class="file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill"
+								type='file' name='fourth_file' /> -->
+
+							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
+								name="submit_btn" value="import4">Import data</button>
+
+
+							{% endif %}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2 float-right">
+			<a href="logout">
+				<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill" name="submit_btn"
+					value="import4">Logout</button></a>
+		</div>
+
+		<header class="text-center mb-5 text-white">
+			<div class="row">
+				<div class="col-lg-6 ">
+					<p>*Go to Help section for more clarification</p>
+				</div>
+			</div>
+		</header>
+
+
+	</section>
+
+
+
+
+	<section>
+
+	</section>
+
+
+	<!-- ======= Footer ======= -->
+	<footer id="footer">
+
+		<div class="container d-md-flex py-4">
+
+			<div class="me-md-auto text-center text-md-start">
+				<div class="copyright">
+					Developed by <strong><span>Rakesh koyya</span></strong> final year ECE.<br>
+					Under the guidance of <strong>M. Pardha Saradhi</strong>, M.Tech(Ph.D).
+				</div>
+				<div class="credits">
+					<!-- All the links in the footer should remain intact. -->
+					<!-- You can delete the links only if you purchased the pro version. -->
+					<!-- Licensing information: https://bootstrapmade.com/license/ -->
+					<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ -->
+					<a href="https://vvitguntur.com" target="_blank">Vasireddy Venkatadri Institute of
+						Technology</a><br>
+					<a href="mailto:rakeshkoyya2024@gmail.com">rakeshkoyya2024@gmail.com</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+
+	<div id="preloader"></div>
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+			class="bi bi-arrow-up-short"></i></a>
+
+	<!-- Vendor JS Files -->
+	<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+	<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+	<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+	<script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
+	<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+	<!-- Template Main JS File -->
+	<script src="{% static 'assets/js/main.js' %}"></script>
+
+
+</body>
+
+</html>
