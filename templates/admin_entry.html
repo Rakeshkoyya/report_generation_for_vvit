@@ -4,22 +4,10 @@
 
 <head>
 
-
-	<script>
-
-		if (document.getElementById("first_file").value != "") {
-
-			document.getElementById("first_file_btn").classList.add("hide-this");
-
-			// you have a file
-		}
-
-	</script>
-
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-	<title>Inner Page - OnePage Bootstrap Template</title>
+	s
+	<title>admin panel</title>
 	<meta content="" name="description">
 	<meta content="" name="keywords">
 
@@ -63,6 +51,12 @@
 		.detform {
 			padding: 4rem;
 			padding-top: 10rem;
+		}
+
+
+
+		.hide {
+			display: None !important;
 		}
 
 		/*
@@ -198,10 +192,10 @@
 							<h2 class="h3 font-weight-bold">no data</h2>
 							<div class="custom-separator my-4 mx-auto bg-primary"></div>
 
-							<span id="first_file_btn"
-								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
-								Choose File <input id='first_file' type="file" name='first_file'>
-							</span>
+							<input type="file" id="first_btn" name='first_file' hidden />
+							<label for="first_btn"
+								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill"
+								id='first_label'>Choose File</label>
 
 							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
 								name="submit_btn" value="import1">Import data</button>
@@ -233,10 +227,10 @@
 							<h2 class="h3 font-weight-bold">no data</h2>
 							<div class="custom-separator my-4 mx-auto bg-primary"></div>
 
-							<span
-								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
-								Choose File <input type="file" name='second_file'>
-							</span>
+							<input type="file" id="second_btn" name='second_file' hidden />
+							<label for="second_btn"
+								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill"
+								id='second_label'>Choose File</label>
 
 							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
 								name="submit_btn" value="import2">Import data</button>
@@ -268,10 +262,10 @@
 							<h2 class="h3 font-weight-bold">no data</h2>
 							<div class="custom-separator my-4 mx-auto bg-primary"></div>
 
-							<span
-								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
-								Choose File <input type="file" name='third_file'>
-							</span>
+							<input type="file" id="third_btn" name='third_file' hidden />
+							<label for="third_btn"
+								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill"
+								id='third_label'>Choose File</label>
 
 							<button type="submit" class="btn btn-primary btn-block p-2 shadow rounded-pill"
 								name="submit_btn" value="import3">Import data</button>
@@ -303,10 +297,19 @@
 							<h2 class="h3 font-weight-bold">no data</h2>
 							<div class="custom-separator my-4 mx-auto bg-primary"></div>
 
-							<span
+
+
+
+							<input type="file" id="fourth_btn" name='fourth_file' hidden />
+							<label for="fourth_btn"
+								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill"
+								id='fourth_label'>Choose File</label>
+
+							<!-- <span id="get"
 								class="btn btn-default btn-file file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill">
-								Choose File <input type="file" name='fourth_file'>
-							</span>
+								Choose File <input type="file" id="fourth_btn" name='fourth_file' hidden />
+							</span> -->
+
 							<!-- <input class="file-upload-input btn btn-primary btn-block p-2 shadow rounded-pill"
 								type='file' name='fourth_file' /> -->
 
@@ -384,6 +387,49 @@
 
 	<!-- Template Main JS File -->
 	<script src="{% static 'assets/js/main.js' %}"></script>
+
+	<script>
+		const fourthbtn = document.getElementById('fourth_btn');
+		const fileChosen = document.getElementById('fourth_label');
+
+		fourthbtn.addEventListener('change', function () {
+			fileChosen.textContent = this.files[0].name;
+			//var v = document.getElementById('fourth_btn')
+			//v.className += "hide";
+		})
+
+		var thirdbtn = document.getElementById('third_btn');
+		var thirdtxt = document.getElementById('third_label');
+
+		thirdbtn.addEventListener('change', function () {
+			thirdtxt.textContent = this.files[0].name;
+			//var v = document.getElementById('fourth_btn')
+			//v.className += "hide";
+		})
+
+		var secondbtn = document.getElementById('second_btn');
+		var secondtxt = document.getElementById('second_label');
+
+		secondbtn.addEventListener('change', function () {
+			secondtxt.textContent = this.files[0].name;
+			//var v = document.getElementById('fourth_btn')
+			//v.className += "hide";
+		})
+
+
+		var firstbtn = document.getElementById('first_btn');
+		var firsttxt = document.getElementById('first_label');
+
+		firstbtn.addEventListener('change', function () {
+			firsttxt.textContent = this.files[0].name;
+			//var v = document.getElementById('fourth_btn')
+			//v.className += "hide";
+		})
+
+
+
+
+	</script>
 
 
 </body>

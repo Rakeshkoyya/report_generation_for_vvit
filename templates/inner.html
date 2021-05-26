@@ -201,23 +201,6 @@
 
   <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <!-- <section class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Inner Page</h2>
-          <ol>
-            <li><a href="home">Home</a></li>
-            <li>Inner Page</li>
-          </ol>
-        </div>
-
-      </div>
-    </section>End Breadcrumbs -->
-
-    <!------ Include the above in your HEAD tag ---------->
-
     <div class="container register">
       <div class="row">
         <div class="col-md-3 register-left">
@@ -231,7 +214,7 @@
             <h3 class="register-heading">Generate Your Attendance Report</h3>
             <div class="row register-form">
               <div class="col-md-6">
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <select name="year" class="form-select">
                     <option value="" selected disabled>Choose year</option>
                     <option value='I'>1st year</option>
@@ -239,31 +222,32 @@
                     <option value='III'>3rd year</option>
                     <option value='IV'>4th year</option>
                   </select>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" value="" />
-                </div>
+                </div> -->
 
                 <div class="row">
                   <div class="col">
-                    <!-- choose file from ms teams
-                    <div class="file-upload">
-
-                      <div class="image-upload-wrap">
-                        <input class="file-upload-input" type='file' name="msfile" />
-                      </div>
-
-                    </div> -->
                     <label class="form-label" for="customFile">Choose file from MS teams</label>
-                    <input type="file" class="form-control" name="msfile" />
+                    <input type="file" class="form-control" name="msfile" required />
 
                   </div>
                 </div>
 
+                <div class="form-group">
+                  <label class="form-label" for="customFile">Enter the subject (Optional)</label>
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" value="" />
+                </div>
+
+                <div class="form-group">
+                  {{ error }}
+                </div>
+
+
+
+
               </div>
 
               <div class="col-md-6">
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <select name="branch" class="form-select">
                     <option value="" selected disabled>Please select Branch</option>
                     <option value='ECE'>ECE</option>
@@ -273,16 +257,15 @@
                     <option value='MECH'>MECH</option>
                     <option value='CIVIL'>CIVIL</option>
                   </select>
-                </div>
-                <div class="form-group">
+                </div> -->
+                <!-- <div class="form-group">
                   <select name="filter" class="form-select">
-                    <option value="" selected disabled>Choose Filter</option>
                     <option value="0">At least Attended</option>
                     <option value="25">More than 25% of class duration</option>
                     <option value="50">More than 50% of class duration</option>
                     <option value="75">More than 75% of class duration</option>
                   </select>
-                </div>
+                </div> -->
 
                 <div class="row">
                   <div class="col">
@@ -292,11 +275,16 @@
                   </div>
                 </div>
 
+
+                <div class="form-group">
+                </div>
+
                 <input type="submit" class="btnRegister" value="Submit" />
               </div>
             </div>
 
           </form>
+
 
 
 

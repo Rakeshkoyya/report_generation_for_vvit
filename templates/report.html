@@ -50,9 +50,15 @@
 
 
 	<style>
-		.gap {
-			padding-top: 6rem;
+		.h6tag {
+			color: #fff;
+			font-size: 18px;
+			font-weight: 500;
+			text-transform: capitalize;
+			line-height: 40px;
+			margin: 0;
 		}
+
 
 
 		.demo {
@@ -247,7 +253,7 @@
 	</header><!-- End Header -->
 
 	<section>
-		<div class="container gap">
+		<div class="container">
 			<div class="row  d-flex justify-content-center">
 				<div class="col-lg-11 col-md-offset-2 col-md-10">
 					<div class="panel">
@@ -255,6 +261,11 @@
 							<div class="row">
 								<div class="col col-sm-3 col-xs-12">
 									<h4 class="title">Report <span>Preview</span></h4>
+									<h6 class="h6tag">Predicted year: {{ p_year }}<br>
+										Predicted Branch: {{ p_branch}}<br>
+										Subject: {{subject}}
+									</h6>
+
 								</div>
 								<div class="col-sm-9 col-xs-12 text-right">
 									<form action="download" method="post">
@@ -275,16 +286,14 @@
 									<tr>
 										<th>#</th>
 										<th>Registered number</th>
-										<th>Name</th>
 										<th>Attendance</th>
 									</tr>
 								</thead>
 								<tbody>
-									{% for no,regd,name,attend in zipped %}
+									{% for no,regd,attend in zipped %}
 									<tr>
 										<td>{{no}}</td>
 										<td>{{regd}}</td>
-										<td>{{name}}</td>
 										<td>{{attend}}</td>
 									</tr>
 									{% endfor %}

@@ -524,7 +524,6 @@ section {
 
 .section-title {
   text-align: center;
-  padding-bottom: 0;
 }
 
 .section-title h2 {
@@ -1739,6 +1738,11 @@ section {
   .breadcrumbs ol li {
     display: inline-block;
   }
+}
+
+
+.hide-this{
+  display: none;
 }
 
 /*--------------------------------------------------------------

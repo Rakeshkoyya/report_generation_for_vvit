@@ -1,3 +1,4 @@
+from re import subn
 from django.shortcuts import render ,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import auth
@@ -16,14 +17,16 @@ filename='report'
 date='00'
 
 year_id={'I':firstyear,'II':secondyear,'III':thirdyear,'IV':fourthyear}
-
+branch_p={'01':'CIVIL','02':'EEE','03':'MECH','04':'ECE','05':'CSE','12':'IT',
+'42':'CSE (AI&ML)','47':'CSE IOT CS BCT','49':'CSE (IOT)','54':'AI&DS'}
 
 def home(request):
 	if count_info.objects.all().count()<=0:
 		count_info(total_reports=0,id_number=1).save()
 	t=count_info.objects.get(id_number=1)
 	total=t.total_reports
-	students_count=firstyear.objects.all().count()+secondyear.objects.all().count()+thirdyear.objects.all().count()+fourthyear.objects.all().count()
+	students_count=firstyear.objects.all().count()+secondyear.objects.all().count()
+	+thirdyear.objects.all().count()+fourthyear.objects.all().count()
 
 	return render(request,'index.html',{'total':total,'students':students_count})
 
@@ -67,16 +70,17 @@ def df_by_year(year):
 	yeartable=year_id[year]
 	students=yeartable.objects.all()
 	regdno_list=[i.regd_number for i in students]
-	fname_list=[i.full_name for i in students]
-	branch_list=[i.branch for i in students]
+	# fname_list=[i.full_name for i in students]
+	# branch_list=[i.branch for i in students]
 
-	return pd.DataFrame({'REGD NO':regdno_list,'FullName':fname_list,'Branch':branch_list})
+	return pd.DataFrame({'REGD NO':regdno_list})
 
 def import_by_file(stu_file,year):
 	table=year_id[year]
 	stu_df=pd.read_excel(stu_file,sheet_name=0,engine='openpyxl')
 	for i in range(stu_df.shape[0]):
-		table(regd_number=stu_df['REGD NO'][i],full_name=stu_df['FullName'][i],branch=stu_df['Branch'][i]).save()
+		# table(regd_number=stu_df['REGD NO'][i],full_name=stu_df['FullName'][i],branch=stu_df['Branch'][i]).save()
+		table(regd_number=stu_df['REGD NO'][i]).save()
 	return
 
 
@@ -143,30 +147,51 @@ def report(request):
 
 	if request.method== 'POST':
 		subject=request.POST['subject']
-		branch=request.POST.get('branch')
-		year=request.POST.get('year')
-		filter=request.POST.get('filter')
+		# branch=request.POST.get('branch')
+		# year=request.POST.get('year')
+		# filter=request.POST.get('filter')
+		filter=None
 		msfile=request.FILES['msfile']
-		msdf=pd.read_csv(msfile,encoding='utf-16',delimiter='\t')
+		try:
+			msdf=pd.read_csv(msfile,encoding='utf-16',delimiter='\t')
+		except:
+			return render(request, 'inner.html',{'error':'Invalid file.'})
+		
+		if not subject:
+			subject="-"
 
-		filename=year+'_'+branch+'_'+subject+'_'
 
 		if 'stfile' in request.FILES:
 			stfile=request.FILES['stfile']
 			stdf=pd.read_excel(stfile,sheet_name=1,engine='openpyxl')
+
+			if not backend.check_df(stdf):
+				return render(request, 'inner.html',{'error':'"REGD NO" column is missing'})
+			if not backend.check_msdf(msdf):
+				return render(request, 'inner.html',{'error':"'Full Name' or 'User Action' or 'Timestamp' not present in file"})
 			result_df,date=backend.get_result_by_stu(stdf,msdf,filter)
 		else:
-			result_df,date=backend.get_result_by_db(msdf,year,branch,filter)
+
+			if not backend.check_msdf(msdf):
+				return render(request, 'inner.html',{'error':"'Full Name' or 'User Action' or 'Timestamp' not present in file"})
 			
+			year,P_branch=backend.predict(msdf)
+			result_df,date=backend.get_result_by_db(msdf,year,P_branch,filter)
+			
+		filename=date+'_'+subject.upper()+'_'
  
 		content={}
+		content['p_year']=year
+		content['p_branch']=branch_p[P_branch]
+		content['subject']=subject.upper()
 		# content['unknown']=unknow_names
 		col_heads=list(result_df.columns.values)
+		print(col_heads)
 		content['redgs']=list(result_df.loc[:,'REGD NO'])
-		content['names']=list(result_df.loc[:,'FullName'])
-		content['attend']=list(result_df.loc[:,col_heads[2]])
+		# content['names']=list(result_df.loc[:,'Full Name'])
+		content['attend']=list(result_df.loc[:,col_heads[1]])
 
-		content['zipped']=zip([i for i in range(1,len(content['redgs'])+1)],content['redgs'],content['names'],content['attend'])
+		content['zipped']=zip([i for i in range(1,len(content['redgs'])+1)],content['redgs'],content['attend'])
 		# content['unknown_zip']=zip( [i for i in range(len(content['redgs'])+1,len(content['unknown'])+1)], content['unknown'])
 		t=count_info.objects.get(id_number=1)
 		t.total_reports +=1
@@ -190,7 +215,7 @@ def download(request):
 
 				result_df.to_excel(writer, sheet_name='Sheet1',startrow=0 , startcol=0)
 				writer.save()
-				filename = filename+date+'.xlsx'
+				filename = filename+'.xlsx'
 				response = HttpResponse(
 					b.getvalue(),
 					content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
