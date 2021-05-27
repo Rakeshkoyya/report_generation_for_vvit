@@ -25,8 +25,7 @@ def home(request):
 		count_info(total_reports=0,id_number=1).save()
 	t=count_info.objects.get(id_number=1)
 	total=t.total_reports
-	students_count=firstyear.objects.all().count()+secondyear.objects.all().count()
-	+thirdyear.objects.all().count()+fourthyear.objects.all().count()
+	students_count=firstyear.objects.all().count()+secondyear.objects.all().count()+thirdyear.objects.all().count()+fourthyear.objects.all().count()
 
 	return render(request,'index.html',{'total':total,'students':students_count})
 
